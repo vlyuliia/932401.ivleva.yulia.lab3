@@ -1,0 +1,330 @@
+/* ===== CSS-переменные ===== */
+:root {
+    --main-color: #fdf5d1;         /* кремовый — основной */
+    --accent-color: #b04a35;       /* терракотовый — акцент (5.44:1 с белым) */
+    --accent-dark: #8a3a28;        /* тёмный терракот для :hover (7.74:1 с белым) */
+    --accent-darker: #6b2418;      /* ещё темнее для :active */
+    --text-color: #2e1a09;         /* тёмно-коричневый для текста (15:1 на кремовом) */
+    --card-bg: #ffffff;
+    --border-color: #d2b48c;
+    --focus-color: #7a5c00;        /* тёмно-золотой — для :focus (5.74:1 на кремовом) */
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Сброс и базовые стили ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--main-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== Шапка ===== */
+header {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 5px 0;
+}
+
+header p {
+    margin: 0 0 15px 0;
+    font-style: italic;
+}
+
+/* ===== Навигационное меню (Flexbox) ===== */
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: var(--accent-darker); /* тёмный фон — контраст сохраняется */
+}
+
+/* ===== Общий контейнер (Grid) ===== */
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* ===== Основной блок ===== */
+main {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* ===== Боковая панель ===== */
+aside {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+aside h3 {
+    color: var(--accent-color);
+    margin-top: 0;
+}
+
+aside a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent-color);
+}
+
+aside a:hover {
+    color: var(--accent-darker); /* тёмный — 10:1 на белом */
+    border-bottom-style: solid;
+}
+
+aside a:visited {
+    color: #5a2a1f;
+}
+
+/* ===== Аватар ===== */
+.avatar {
+    display: block;
+    margin: 0 auto 20px auto;
+    border: 3px solid var(--accent-color);
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+/* ===== Заголовки ===== */
+h2 {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 5px;
+    position: static;
+}
+
+/* ===== Фирменные блюда (Flexbox) ===== */
+.flex-dishes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.dish-card {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 220px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dish-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dish-card img {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.dish-card h3 {
+    margin: 0 0 10px 0;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
+.dish-card dl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.dish-card dt {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.dish-card dd {
+    margin: 0;
+    margin-right: 10px;
+}
+
+/* ===== Ингредиенты недели (CSS Grid 3x2) ===== */
+.grid-ingredients {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.ingredient-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.ingredient-card:hover {
+    transform: scale(1.03);
+}
+
+.ingredient-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    object-fit: cover;
+}
+
+.ingredient-card h3 {
+    margin: 0 0 5px 0;
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
+.ingredient-card p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+/* ===== Форма ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-main);
+    background-color: var(--main-color);
+    color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* :focus — тёмно-золотая обводка (5.74:1 на кремовом фоне) */
+input:focus, textarea:focus {
+    outline: 3px solid var(--focus-color);
+    outline-offset: 2px;
+    border-color: var(--focus-color);
+}
+
+/* ===== Кнопка (исправленный контраст) ===== */
+button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.15s;
+    align-self: flex-start;
+}
+
+button:hover {
+    background-color: var(--accent-dark); /* темнее, а не светлее — 7.74:1 */
+}
+
+button:active {
+    transform: translateY(2px);
+    background-color: var(--accent-darker); /* ещё темнее — 10:1 */
+}
+
+/* ===== Подвал ===== */
+footer {
+    background-color: var(--text-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* ===== МЕДИА-ЗАПРОСЫ ===== */
+
+/* Планшет: до 768px */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .dish-card {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    .grid-ingredients {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Мобильные: до 480px */
+@media (max-width: 480px) {
+    .dish-card {
+        flex: 1 1 100%;
+    }
+
+    .grid-ingredients {
+        grid-template-columns: 1fr;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+}
