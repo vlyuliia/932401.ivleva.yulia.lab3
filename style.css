@@ -1,17 +1,15 @@
-/* ===== CSS-переменные ===== */
 :root {
-    --main-color: #fdf5d1;         /* кремовый — основной */
-    --accent-color: #b04a35;       /* терракотовый — акцент (5.44:1 с белым) */
-    --accent-dark: #8a3a28;        /* тёмный терракот для :hover (7.74:1 с белым) */
-    --accent-darker: #6b2418;      /* ещё темнее для :active */
-    --text-color: #2e1a09;         /* тёмно-коричневый для текста (15:1 на кремовом) */
+    --main-color: #fdf5d1;
+    --accent-color: #b04a35;
+    --accent-dark: #8a3a28;
+    --accent-darker: #6b2418;
+    --text-color: #2e1a09;
     --card-bg: #ffffff;
     --border-color: #d2b48c;
-    --focus-color: #7a5c00;        /* тёмно-золотой — для :focus (5.74:1 на кремовом) */
+    --focus-color: #7a5c00;
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== Сброс и базовые стили ===== */
 * {
     box-sizing: border-box;
 }
@@ -32,7 +30,6 @@ img {
     display: block;
 }
 
-/* ===== Шапка ===== */
 header {
     background-color: var(--accent-color);
     color: #ffffff;
@@ -49,7 +46,6 @@ header p {
     font-style: italic;
 }
 
-/* ===== Навигационное меню (Flexbox) ===== */
 nav ul {
     display: flex;
     justify-content: center;
@@ -69,10 +65,18 @@ nav a {
 }
 
 nav a:hover {
-    background-color: var(--accent-darker); /* тёмный фон — контраст сохраняется */
+    background-color: var(--accent-darker);
 }
 
-/* ===== Общий контейнер (Grid) ===== */
+nav a:visited {
+    color: #fff3e0;
+}
+
+nav a:focus {
+    outline: 3px solid var(--text-color);
+    outline-offset: 2px;
+}
+
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -82,7 +86,6 @@ nav a:hover {
     padding: 0 15px;
 }
 
-/* ===== Основной блок ===== */
 main {
     background-color: var(--card-bg);
     padding: 20px;
@@ -90,7 +93,6 @@ main {
     border-radius: 8px;
 }
 
-/* ===== Боковая панель ===== */
 aside {
     background-color: var(--card-bg);
     padding: 20px;
@@ -110,7 +112,7 @@ aside a {
 }
 
 aside a:hover {
-    color: var(--accent-darker); /* тёмный — 10:1 на белом */
+    color: var(--accent-darker);
     border-bottom-style: solid;
 }
 
@@ -118,7 +120,6 @@ aside a:visited {
     color: #5a2a1f;
 }
 
-/* ===== Аватар ===== */
 .avatar {
     display: block;
     margin: 0 auto 20px auto;
@@ -128,7 +129,6 @@ aside a:visited {
     height: 200px;
 }
 
-/* ===== Заголовки ===== */
 h2 {
     color: var(--accent-color);
     border-bottom: 2px solid var(--accent-color);
@@ -136,7 +136,6 @@ h2 {
     position: static;
 }
 
-/* ===== Фирменные блюда (Flexbox) ===== */
 .flex-dishes {
     display: flex;
     flex-wrap: wrap;
@@ -145,8 +144,7 @@ h2 {
 }
 
 .dish-card {
-    flex: 1 1 calc(33.333% - 20px);
-    min-width: 220px;
+    flex: 1 1 calc((100% - 40px) / 3);
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 16px;
@@ -191,7 +189,6 @@ h2 {
     margin-right: 10px;
 }
 
-/* ===== Ингредиенты недели (CSS Grid 3x2) ===== */
 .grid-ingredients {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -231,7 +228,6 @@ h2 {
     font-size: 0.85rem;
 }
 
-/* ===== Форма ===== */
 form {
     display: flex;
     flex-direction: column;
@@ -253,14 +249,12 @@ input, textarea {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* :focus — тёмно-золотая обводка (5.74:1 на кремовом фоне) */
 input:focus, textarea:focus {
     outline: 3px solid var(--focus-color);
     outline-offset: 2px;
     border-color: var(--focus-color);
 }
 
-/* ===== Кнопка (исправленный контраст) ===== */
 button {
     background-color: var(--accent-color);
     color: #ffffff;
@@ -275,15 +269,19 @@ button {
 }
 
 button:hover {
-    background-color: var(--accent-dark); /* темнее, а не светлее — 7.74:1 */
+    background-color: var(--accent-dark);
 }
 
 button:active {
     transform: translateY(2px);
-    background-color: var(--accent-darker); /* ещё темнее — 10:1 */
+    background-color: var(--accent-darker);
 }
 
-/* ===== Подвал ===== */
+button:focus {
+    outline: 3px solid var(--text-color);
+    outline-offset: 2px;
+}
+
 footer {
     background-color: var(--text-color);
     color: #ffffff;
@@ -292,16 +290,13 @@ footer {
     margin-top: 20px;
 }
 
-/* ===== МЕДИА-ЗАПРОСЫ ===== */
-
-/* Планшет: до 768px */
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
     }
 
     .dish-card {
-        flex: 1 1 calc(50% - 20px);
+        flex: 1 1 calc((100% - 20px) / 2);
     }
 
     .grid-ingredients {
@@ -309,7 +304,6 @@ footer {
     }
 }
 
-/* Мобильные: до 480px */
 @media (max-width: 480px) {
     .dish-card {
         flex: 1 1 100%;
@@ -317,11 +311,6 @@ footer {
 
     .grid-ingredients {
         grid-template-columns: 1fr;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
     }
 
     header h1 {
